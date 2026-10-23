@@ -47,4 +47,4 @@ cero o negativas; ese caso queda pendiente para la semana 2.
   prueba calculados a mano.
 - [x] La bitácora deja registrado qué ocurre con cero horas o con una cantidad
   negativa, sin agregar todavía una decisión para corregirlo.
-- [ ] Confirmar la ejecución de los tres casos en PSeInt con el perfil elegido.
+- [x] Confirmar la ejecución de los tres casos en PSeInt con el perfil elegido.
