@@ -23,3 +23,9 @@
 ## FIN
 
 El cliente sale del local con la bicicleta, el casco (si lo aceptó) y el candado.
+
+## Diagrama de flujo
+
+![Diagrama de flujo del algoritmo v2](diagramas/alquiler-bicicleta-v2.svg)
+
+> Las rombos son las decisiones; los lazos de vuelta (repetir la pregunta, revisar la siguiente bicicleta, probar otro candado) muestran los ciclos acotados que garantizan la finitud, y las terminaciones `stop` son los caminos que llevan al **FIN** sin cobrar.

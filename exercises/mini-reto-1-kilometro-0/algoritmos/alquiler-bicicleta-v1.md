@@ -15,6 +15,12 @@
 7. Se anota todo en el libro.
 8. El cliente se despide y se va con la bicicleta.
 
+## Diagrama de flujo
+
+![Diagrama de flujo del algoritmo v1](diagramas/alquiler-bicicleta-v1.svg)
+
+> Es una secuencia lineal sin bifurcaciones: no hay ninguna decisión que pueda llevar a otro camino, y no se distingue un inicio ni un final.
+
 ## Lo que esta versión no resuelve
 
 - No tiene un **inicio** ni un **fin** explícitos: no se sabe cuándo empieza ni cuándo termina el proceso.

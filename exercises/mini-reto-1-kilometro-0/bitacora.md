@@ -1,7 +1,9 @@
 # Bitácora — MiniReto 1 · Kilómetro 0: el alquiler sin ambigüedades
 
 **Proyecto:** Rueda Libre — alquiler de bicicletas
+
 **Trabajo individual**
+
 **Fecha:** 23/10/2026
 
 ---
@@ -33,6 +35,10 @@ la versión que le entregué al compañero para que la siguiera literalmente.
 6. Se le entrega el casco y el candado.
 7. Se anota todo en el libro.
 8. El cliente se despide y se va con la bicicleta.
+
+![Diagrama de flujo del algoritmo v1](algoritmos/diagramas/alquiler-bicicleta-v1.svg)
+
+*Flujo de la versión 1: una secuencia lineal, sin ninguna bifurcación.*
 
 [Ver versión 1 completa](algoritmos/alquiler-bicicleta-v1.md)
 
@@ -86,6 +92,10 @@ Reescribí el algoritmo eliminando cada ambigüedad de la tabla. Agregué decisi
 ### FIN
 
 El cliente sale del local con la bicicleta, el casco (si lo aceptó) y el candado.
+
+![Diagrama de flujo del algoritmo v2](algoritmos/diagramas/alquiler-bicicleta-v2.svg)
+
+*Flujo de la versión 2: los rombos son las decisiones, los lazos de vuelta son los ciclos acotados y las terminaciones `stop` son los caminos que llevan al **FIN** sin cobrar.*
 
 [Ver versión 2 completa](algoritmos/alquiler-bicicleta-v2.md)
 

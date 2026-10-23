@@ -16,7 +16,10 @@ mini-reto-1-kilometro-0/
 ├── bitacora.md    ← entregable: versiones del algoritmo, ambigüedades y análisis
 └── algoritmos/
     ├── alquiler-bicicleta-v1.md   ← primera redacción (con ambigüedades)
-    └── alquiler-bicicleta-v2.md   ← versión corregida
+    ├── alquiler-bicicleta-v2.md   ← versión corregida
+    └── diagramas/
+        ├── alquiler-bicicleta-v1.svg
+        └── alquiler-bicicleta-v2.svg
 ```
 
 ## Contenido
@@ -30,6 +33,19 @@ mini-reto-1-kilometro-0/
 - [Algoritmo v2](algoritmos/alquiler-bicicleta-v2.md) — versión corregida con inicio
   y fin explícitos, decisiones (por ejemplo, qué hacer si no hay bicicletas) y ciclos
   acotados.
+- Diagramas de flujo en formato SVG:
+  - [Flujo v1](algoritmos/diagramas/alquiler-bicicleta-v1.svg) — secuencia lineal, sin bifurcaciones.
+  - [Flujo v2](algoritmos/diagramas/alquiler-bicicleta-v2.svg) — con decisiones, ciclos acotados y salidas al FIN.
+
+## Diagramas de flujo
+
+### Versión 1 (con ambigüedades)
+
+![Diagrama de flujo del algoritmo v1](algoritmos/diagramas/alquiler-bicicleta-v1.svg)
+
+### Versión 2 (corregida)
+
+![Diagrama de flujo del algoritmo v2](algoritmos/diagramas/alquiler-bicicleta-v2.svg)
 
 ## Criterios cumplidos
 
