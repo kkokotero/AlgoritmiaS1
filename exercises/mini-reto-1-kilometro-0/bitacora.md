@@ -70,35 +70,70 @@ pide la dueña.
 
 ## 4. La versión corregida
 
-Reescribí todo desde cero, quitando una por una las ambigüedades de la tabla. Agregué
-decisiones, entre ellas el caso de no haber bicicletas, validé las respuestas del
-cliente y le puse un cierre explícito.
+Reescribí el algoritmo para que todas las rutas tengan un cierre. Las preguntas
+permiten como máximo tres respuestas, las bicicletas y los candados se revisan
+una cantidad finita de unidades, y los recursos se comprueban antes de cobrar.
+Si falta un elemento necesario, explico que se cancela el alquiler y no cobro.
+
+Al revisar esa primera versión corregida, encontré cuatro vacíos más: las
+preguntas podían repetirse sin límite, el cliente podía terminar sin casco, el
+cobro ocurría antes de comprobar todo el equipo y no estaba definida con
+precisión la devolución de un alquiler por día. Los pasos de abajo resuelven
+esos casos.
 
 ### INICIO — Alquiler de bicicleta en Rueda Libre
 
-1. Contar cuántas bicicletas hay en el rack con el cartel de "disponible". Guardar el número en `bicicletas_disponibles`.
-2. **Si `bicicletas_disponibles` es 0**, decirle al cliente "Hoy no nos quedan bicicletas disponibles, vuelva mañana" e ir directamente al **FIN**. Si es mayor que 0, seguir en el paso 3.
-3. Preguntar al cliente: "¿Qué talla de casco usa: S, M o L?". Si responde cualquier otra cosa, repetir la pregunta. Guardar la respuesta en `talla_casco`.
-4. Preguntar al cliente: "¿Alquila por hora o por día?". Si responde cualquier otra cosa, repetir la pregunta. Guardar la respuesta en `duracion`.
-5. Si `duracion` es "hora", `precio` <- 5.000. Si `duracion` es "dia", `precio` <- 15.000.
-6. Pedirle al cliente su cédula o pasaporte. **Si el cliente no entrega ningún documento**, decirle "Sin documento no podemos alquilar" e ir directamente al **FIN**.
-7. Copiar en el libro de alquiler, con letra legible: número de documento, nombre completo, `talla_casco`, `duracion`, `precio` y la fecha de hoy.
-8. Revisar la bicicleta con el cliente al lado: probar el freno delantero, el freno trasero, las luces y los cambios. **Si alguno falla**, sacar la bicicleta del rack, avisar al jefe y repetir el paso 8 con la siguiente bicicleta. **Si se revisaron todas y ninguna sirve**, decirle al cliente "Hoy no podemos alquilar", tachar el registro del paso 7 e ir directamente al **FIN**, sin cobrar.
-9. Pedirle al cliente el dinero: debe entregar exactamente `precio` o más. **Si entrega menos**, devolverle lo que entregó, decirle "Faltan $X" (donde `X` es `precio` menos lo entregado) y repetir el paso 9. **Si entrega de más**, entregarle el vuelto (`lo_entregado` menos `precio`).
-10. Entregarle la bicicleta al cliente y pedirle que confirme en voz alta la hora en que debe devolverla (la hora actual más `duracion`).
-11. Buscar en el estante un casco de la `talla_casco` registrada en el paso 3. **Si no hay de esa talla**, ofrecerle al cliente la talla más cercana (S→M, L→M, M→L). Si el cliente la acepta, entregarla; si la rechaza, decirle "Entonces alquila sin casco" y seguir en el paso 12.
-12. Entregarle un candado nuevo cerrado con llave y pedirle que lo abra y lo cierre una vez frente a usted. **Si no abre o no cierra**, entregar otro candado nuevo y repetir el paso 12.
-13. Entregar el comprobante de pago y agradecer al cliente.
+1. Saludar al cliente y pedirle su nombre completo y su cédula o pasaporte. Si
+   no presenta un documento, explicarle que no se puede hacer el alquiler e ir
+   al **FIN**.
+2. Contar las bicicletas disponibles. Si no hay ninguna, avisarle al cliente
+   que hoy no hay bicicletas y terminar el proceso.
+3. Preguntarle si alquilará por una hora o por un día. Aceptar solo las
+   respuestas "hora" o "día". Puede responder hasta tres veces en total,
+   contando la primera respuesta. Si después de tres intentos no elige una de
+   las dos opciones, explicarle que no se pudo registrar la duración y terminar.
+4. Asignar el precio según la duración: una hora cuesta $5.000 y un día cuesta
+   $15.000.
+5. Preguntarle qué talla de casco necesita: S, M o L. Puede responder hasta
+   tres veces en total. Si después de tres intentos no indica una talla válida,
+   explicarle que no se pudo determinar el casco y terminar.
+6. Revisar las bicicletas disponibles en el orden en que están en el rack.
+   Probar en cada una los frenos delantero y trasero, las luces y los cambios.
+   Si algún componente falla, marcar esa bicicleta como no disponible, avisar
+   al jefe y probar la siguiente. Usar la primera bicicleta que pase todas las
+   pruebas. Si se revisan todas y ninguna funciona, avisar al cliente y terminar
+   sin cobrar.
+7. Buscar el primer casco disponible de la talla solicitada. Si no hay, revisar
+   si está disponible una sola talla alternativa: M para quien pidió S o L, y S
+   para quien pidió M. Si no hay un casco de esa talla alternativa, explicar que
+   no se puede completar el alquiler y terminar sin cobrar. Si sí lo hay,
+   ofrecerlo; si el cliente no lo acepta, terminar sin cobrar. Si lo acepta,
+   reservarlo para la entrega.
+8. Revisar los candados disponibles en el orden en que están guardados,
+   probando que cada uno abra y cierre con su llave. Si uno falla, apartarlo y
+   probar el siguiente. Reservar el primer candado que funcione. Si no queda
+   ningún candado funcional, avisar al cliente y terminar sin cobrar.
+9. Cobrar una sola vez el precio asignado. Si el cliente entrega menos,
+   devolverle todo el dinero, explicarle cuánto faltó y terminar sin completar
+   el alquiler. Si entrega el precio exacto, continuar. Si entrega de más,
+   devolverle la diferencia.
+10. Registrar en el libro la fecha, el nombre, el documento, la bicicleta
+    asignada, la talla de casco entregada, la duración, el precio y la hora de
+    devolución. Para una hora, indicar la hora actual más una hora; para un
+    día, indicar la misma hora del día siguiente.
+11. Entregar al cliente la bicicleta revisada, el casco reservado, el candado
+    funcional y el comprobante. Agradecerle y confirmar la hora de devolución.
 
 ### FIN
 
-El cliente sale del local con la bicicleta, el casco si lo aceptó, y el candado.
+El alquiler termina cancelado y sin cobro si falta un requisito, bicicleta o
+elemento funcional; si se completa, el cliente sale con la bicicleta, el casco,
+el candado y el comprobante.
 
 ![Diagrama de flujo del algoritmo v2](algoritmos/diagramas/alquiler-bicicleta-v2.svg)
 
-*En el diagrama se ven los rombos, que son las decisiones. Los lazos de vuelta son
-los ciclos, y las terminaciones `stop` marcan los caminos que llevan al **FIN** sin
-haber cobrado.*
+*El diagrama muestra las decisiones para seguir con el alquiler o cancelarlo sin
+cobro cuando falta un requisito o un elemento funcional.*
 
 [Ver la versión 2 completa](algoritmos/alquiler-bicicleta-v2.md)
 
@@ -106,68 +141,63 @@ haber cobrado.*
 
 ## 5. Por qué esto sí funciona como algoritmo
 
-**Precisión.** Cada paso dice exactamente qué hacer. El precio no depende de la
-interpretación de nadie:
+**Precisión.** Las tarifas y sus condiciones están especificadas, igual que la
+revisión necesaria:
 
-> "Si `duracion` es "hora", `precio` <- 5.000. Si `duracion` es "dia", `precio` <- 15.000."
+> "Una hora cuesta $5.000 y un día cuesta $15.000."
 
-No puse "cobrar lo que cueste", puse la acción concreta para cada caso.
+También se enumeran los frenos, las luces y los cambios que se prueban.
 
-**Finitud.** Todo el proceso termina, y los ciclos tienen condición de salida:
+**Finitud.** Las respuestas inválidas tienen un máximo de tres intentos; la
+revisión recorre una cantidad finita de bicicletas y candados disponibles. Si
+no se encuentra un recurso funcional, el proceso termina sin cobrar. El pago
+se intenta una sola vez:
 
-> "Si `bicicletas_disponibles` es 0, decirle al cliente [...] e ir directamente al **FIN**."
+> "Si el cliente entrega menos, devolverle todo el dinero [...] y terminar."
 
-Los "repetir" de los pasos 3, 4, 9 y 12 también terminan, porque solo se repiten
-mientras la respuesta no sea válida.
+**Orden.** Primero se confirman las entradas y los recursos, luego se cobra,
+después se registra el alquiler y finalmente se entrega:
 
-**Orden.** Los pasos van en la secuencia escrita, y el cobro no aparece antes de
-saber que la bicicleta sirve:
+> Paso 6: revisar la bicicleta → paso 7: reservar el casco → paso 8: revisar el candado → paso 9: cobrar → pasos 10-11: registrar y entregar.
 
-> Paso 7: registrar → paso 8: revisar la bicicleta → paso 9: cobrar → paso 10: entregar.
+Así no se cobra antes de saber que se puede completar el alquiler.
 
-Cambiar el orden del 8 y el 9 daría otro algoritmo distinto, y de hecho el de la
-versión 1 los tenía al revés.
+**Determinismo.** Las mismas respuestas y el mismo inventario llevan a la misma
+decisión: se elige la primera bicicleta funcional del rack, se aplica una
+alternativa de talla definida y se prueba cada candado en orden.
 
-**Determinismo.** Ante los mismos datos, el resultado es el mismo, sin importar quién
-esté en taquilla:
+> "Usar la primera bicicleta que pase todas las pruebas."
 
-> "Si `duracion` es "hora", `precio` <- 5.000. Si `duracion` es "dia", `precio` <- 15.000."
+**Efectividad.** Cada acción se puede realizar con elementos del local: preguntar
+y leer el documento, observar la talla, probar los frenos y accesorios, registrar
+los datos y recibir o devolver dinero.
 
-Dos personas distintas atendiendo al mismo cliente terminan cobrando el mismo precio.
-
-**Efectividad.** Cualquier persona de taquilla puede ejecutar estos pasos sin saber
-de nada especial y sin equipo distinto al libro, el rack y el sistema de cobro:
-
-> "Copiar en el libro de alquiler [...] número de documento, nombre completo, `talla_casco`, `duracion`, `precio` y la fecha de hoy."
-
-No pide cálculos complicados ni que nadie sepa de mecánica.
+> "Probar en cada una los frenos delantero y trasero, las luces y los cambios."
 
 ---
 
 ## 6. Los cuatro pilares del pensamiento computacional
 
-**Descomposición.** Partí el alquiler en cinco trozos que se pueden tocar por
+**Descomposición.** Partí el alquiler en cinco partes que se pueden revisar por
 separado sin afectar al resto:
 
-1. Verificar disponibilidad (pasos 1-2).
-2. Registrar al cliente (pasos 3-7).
-3. Revisar la bicicleta (paso 8).
-4. Cobrar (paso 9).
-5. Entregar bicicleta, casco y candado (pasos 10-13).
+1. Identificar al cliente y confirmar los datos de alquiler (pasos 1-5).
+2. Encontrar y revisar una bicicleta funcional (paso 6).
+3. Reservar casco y candado funcionales (pasos 7-8).
+4. Cobrar y registrar (pasos 9-10).
+5. Entregar la bicicleta con su equipo y comprobante (paso 11).
 
-**Abstracción.** Dejé afuera todo lo que no cambiaba el resultado: el color y la
-marca de la bicicleta, el nombre de quien atiende, la ruta que hará el cliente, cómo
-se fabrica el casco y qué banco procesa el pago. Lo que dejé adentro es lo que
-importa para decidir: cuántas bicicletas hay, qué talla de casco, cuánto dura el
-alquiler, el documento y el monto a cobrar.
+**Abstracción.** Dejé afuera detalles que no cambian la decisión de alquilar,
+como el color o la marca de la bicicleta, la ruta del cliente y cómo se fabrica
+el casco. Incluí lo necesario para completar el alquiler con seguridad: el
+documento, la duración, el precio y la disponibilidad y funcionamiento del equipo.
 
-**Reconocimiento de patrones.** Con cada cliente se repite el mismo ciclo: *validar
-los datos, entregar el recurso, cobrar y cerrar el registro*. También se repite en
-los pasos 8, 11 y 12 el patrón de "si el recurso falla, usar el siguiente; si se
-acaban todos, avisar y terminar". Ver eso ahorró reescribir la misma lógica tres
-veces: es la misma estructura aplicada a bicicletas, cascos y candados.
+**Reconocimiento de patrones.** Con cada cliente se repite la misma secuencia:
+confirmar datos, comprobar recursos, cobrar y completar el registro. Al revisar
+bicicletas y candados se sigue un patrón similar: probar cada elemento en orden
+hasta encontrar uno funcional o hasta que no queden más; en este último caso se
+termina sin cobrar.
 
-**Algoritmo final.** Es la versión corregida de la sección 4: trece pasos con
-inicio, fin, decisiones y ciclos acotados, que siempre dan lo mismo ante los mismos
-datos, sin importar quién esté atendiendo.
-
+**Algoritmo final.** Es la versión corregida de la sección 4: once pasos con
+inicio, fin, decisiones y recorridos limitados que terminan con una cancelación
+sin cobro o con la entrega de bicicleta, casco y candado funcionales.

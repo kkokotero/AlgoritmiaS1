@@ -1,35 +1,58 @@
 # Algoritmo de alquiler de bicicleta — Versión 2
 
-Esta es la versión corregida, escrita después de que un compañero siguiera la
-primera al pie de la letra y encontrara todos los huecos. Aquí ya hay inicio, fin,
-decisiones y entradas definidas, y ningún paso depende del sentido común de quien
-atienda.
+Esta es la versión corregida. Define qué hacer si faltan bicicletas o equipo,
+limita los intentos de respuesta y completa el cobro solo cuando ya se sabe que
+se puede entregar la bicicleta con casco y candado funcionales.
 
 ## INICIO — Alquiler de bicicleta en Rueda Libre
 
-1. Contar cuántas bicicletas hay en el rack con el cartel de "disponible". Guardar el número en `bicicletas_disponibles`.
-2. Si `bicicletas_disponibles` es 0, decirle al cliente "Hoy no nos quedan bicicletas disponibles, vuelva mañana" e ir directamente al **FIN**. Si es mayor que 0, seguir en el paso 3.
-3. Preguntarle al cliente: "¿Qué talla de casco usa: S, M o L?". Si responde cualquier otra cosa, repetir la pregunta. Guardar la respuesta en `talla_casco`.
-4. Preguntarle al cliente: "¿Alquila por hora o por día?". Si responde cualquier otra cosa, repetir la pregunta. Guardar la respuesta en `duracion`.
-5. Si `duracion` es "hora", `precio` <- 5.000. Si `duracion` es "dia", `precio` <- 15.000.
-6. Pedirle al cliente su cédula o pasaporte. Si no entrega ningún documento, decirle "Sin documento no podemos alquilar" e ir directamente al **FIN**.
-7. Copiar en el libro de alquiler, con letra legible: número de documento, nombre completo, `talla_casco`, `duracion`, `precio` y la fecha de hoy.
-8. Revisar la bicicleta con el cliente al lado: probar el freno delantero, el freno trasero, las luces y los cambios. Si alguno falla, sacar la bicicleta del rack, avisar al jefe y repetir el paso 8 con la siguiente bicicleta. Si se revisaron todas y ninguna sirve, decirle al cliente "Hoy no podemos alquilar", tachar el registro del paso 7 e ir directamente al **FIN**, sin cobrar.
-9. Pedirle al cliente el dinero: debe entregar exactamente `precio` o más. Si entrega menos, devolverle lo que entregó, decirle "Faltan $X" (donde `X` es `precio` menos lo entregado) y repetir el paso 9. Si entrega de más, entregarle el vuelto (`lo_entregado` menos `precio`).
-10. Entregarle la bicicleta al cliente y pedirle que confirme en voz alta la hora en que debe devolverla, que es la hora actual más `duracion`.
-11. Buscar en el estante un casco de la `talla_casco` registrada en el paso 3. Si no hay de esa talla, ofrecerle al cliente la talla más cercana (S→M, L→M, M→L). Si la acepta, entregarla; si la rechaza, decirle "Entonces alquila sin casco" y seguir en el paso 12.
-12. Entregarle un candado nuevo cerrado con llave y pedirle que lo abra y lo cierre una vez frente a usted. Si no abre o no cierra, entregar otro candado nuevo y repetir el paso 12.
-13. Entregar el comprobante de pago y agradecer al cliente.
+1. Saludar al cliente y pedirle su nombre completo y su cédula o pasaporte. Si
+   no presenta un documento, explicarle que no se puede hacer el alquiler e ir
+   al **FIN**.
+2. Contar las bicicletas disponibles. Si no hay ninguna, avisarle al cliente
+   que hoy no hay bicicletas y terminar el proceso.
+3. Preguntarle si alquilará por una hora o por un día. Aceptar solo las
+   respuestas "hora" o "día". Puede responder hasta tres veces en total,
+   contando la primera respuesta. Si después de tres intentos no elige una de
+   las dos opciones, explicarle que no se pudo registrar la duración y terminar.
+4. Asignar el precio según la duración: una hora cuesta $5.000 y un día cuesta
+   $15.000.
+5. Preguntarle qué talla de casco necesita: S, M o L. Puede responder hasta
+   tres veces en total. Si después de tres intentos no indica una talla válida,
+   explicarle que no se pudo determinar el casco y terminar.
+6. Revisar las bicicletas disponibles en el orden en que están en el rack.
+   Probar en cada una los frenos delantero y trasero, las luces y los cambios.
+   Si algún componente falla, marcar esa bicicleta como no disponible, avisar
+   al jefe y probar la siguiente. Usar la primera bicicleta que pase todas las
+   pruebas. Si se revisan todas y ninguna funciona, avisar al cliente y terminar
+   sin cobrar.
+7. Buscar el primer casco disponible de la talla solicitada. Si no hay, revisar
+   si está disponible una sola talla alternativa: M para quien pidió S o L, y S
+   para quien pidió M. Si no hay un casco de esa talla alternativa, explicar que
+   no se puede completar el alquiler y terminar sin cobrar. Si sí lo hay,
+   ofrecerlo; si el cliente no lo acepta, terminar sin cobrar. Si lo acepta,
+   reservarlo para la entrega.
+8. Revisar los candados disponibles en el orden en que están guardados,
+   probando que cada uno abra y cierre con su llave. Si uno falla, apartarlo y
+   probar el siguiente. Reservar el primer candado que funcione. Si no queda
+   ningún candado funcional, avisar al cliente y terminar sin cobrar.
+9. Cobrar una sola vez el precio asignado. Si el cliente entrega menos,
+   devolverle todo el dinero, explicarle cuánto faltó y terminar sin completar
+   el alquiler. Si entrega el precio exacto, continuar. Si entrega de más,
+   devolverle la diferencia.
+10. Registrar en el libro la fecha, el nombre, el documento, la bicicleta
+    asignada, la talla de casco entregada, la duración, el precio y la hora de
+    devolución. Para una hora, indicar la hora actual más una hora; para un
+    día, indicar la misma hora del día siguiente.
+11. Entregar al cliente la bicicleta revisada, el casco reservado, el candado
+    funcional y el comprobante. Agradecerle y confirmar la hora de devolución.
 
 ## FIN
 
-El cliente sale del local con la bicicleta, el casco si lo aceptó, y el candado.
+El alquiler termina de una de dos maneras: se cancela con una explicación antes
+de cobrar, o el cliente sale con la bicicleta, el casco, el candado y su
+comprobante.
 
 ## Diagrama de flujo
 
 ![Diagrama de flujo del algoritmo v2](diagramas/alquiler-bicicleta-v2.svg)
-
-En el diagrama aparecen rombos, que son las decisiones. Los lazos de vuelta muestran
-los ciclos acotados: repetir la pregunta, revisar la siguiente bicicleta, probar
-otro candado. Y las terminaciones `stop` son los caminos que llevan al **FIN** sin
-haber cobrado.

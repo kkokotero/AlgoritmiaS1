@@ -32,8 +32,9 @@ mini-reto-1-kilometro-0/
 - [La versión 1 del algoritmo](algoritmos/alquiler-bicicleta-v1.md) es lo que salió
   de mi primera escritura: ocho pasos, sin inicio, sin fin y sin ninguna decisión.
 - [La versión 2 del algoritmo](algoritmos/alquiler-bicicleta-v2.md) es la corregida:
-  ya tiene comienzo y cierre claros, decisiones (por ejemplo, qué hacer cuando no
-  quedan bicicletas) y ciclos que siempre terminan.
+  tiene comienzo y cierre claros, decisiones para cancelar sin cobrar cuando falta
+  un requisito, y recorridos limitados para revisar el inventario y validar
+  respuestas.
 - Los dos diagramas de flujo, en SVG, acompañan cada versión.
 
 ## Los diagramas de flujo
@@ -48,7 +49,9 @@ mini-reto-1-kilometro-0/
 
 ## Lo que pedía el reto y cómo quedó
 
-- [x] El repositorio tiene `README.md`, `bitacora.md` y la carpeta `algoritmos/`.
+- [ ] Crear el repositorio público independiente `rueda-libre-algoritmia` y subir
+  allí `README.md`, `bitacora.md` y la carpeta `algoritmos/`. Por ahora, los
+  archivos están dentro del repositorio del curso.
 - [x] La bitácora cuenta las dos versiones del algoritmo y las ambigüedades que aparecieron al probarlo.
 - [x] El algoritmo corregido arranca y termina de forma clara, y toma decisiones.
 - [x] Las cinco características de un algoritmo correcto están justificadas con fragmentos del propio texto.
