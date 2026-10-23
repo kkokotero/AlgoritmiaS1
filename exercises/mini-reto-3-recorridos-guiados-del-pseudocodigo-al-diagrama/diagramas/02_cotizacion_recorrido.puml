@@ -1,0 +1,15 @@
+@startuml
+title Cotización de recorrido guiado
+
+start
+:Leer nombre del recorrido;
+:Leer precio por persona;
+:Leer cantidad de personas;
+:Calcular total del grupo;
+:Definir porcentaje de anticipo = 30 %;
+:Redondear anticipo al entero más cercano;
+:Calcular saldo = total - anticipo;
+:Mostrar recorrido, total,\nanticipo y saldo pendiente;
+stop
+
+@enduml
