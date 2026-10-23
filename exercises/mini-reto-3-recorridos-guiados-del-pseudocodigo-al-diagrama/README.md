@@ -1,40 +1,51 @@
 # MiniReto 3 · Recorridos guiados: del pseudocódigo al diagrama de flujo
 
-**Trabajo individual**
+**Trabajo individual de Algoritmia**
 
-En este reto calculo el costo de un recorrido guiado para un grupo. La persona
-de taquilla ingresa el nombre del recorrido, su precio por persona y el número
-de participantes. El algoritmo muestra el total, el anticipo del 30 % y el
-saldo que se pagará el día del recorrido.
+En Rueda Libre, los recorridos se reservan con anticipación. El cliente paga el
+30 % del valor como anticipo y completa el pago el día del recorrido. En este
+reto llevo ese cálculo a PSeInt y represento cada paso con un diagrama de flujo.
 
-## Organización
+## Cómo está organizado
 
 ```
 mini-reto-3-recorridos-guiados-del-pseudocodigo-al-diagrama/
 ├── README.md
 ├── bitacora.md
 ├── algoritmos/
-│   └── 02_cotizacion_recorrido.psc
-└── diagramas/
-    ├── 02_cotizacion_recorrido.png
+│   ├── 02_cotizacion_recorrido.psc
+│   └── diagramas/
+│       └── 02_cotizacion_recorrido.png
 ```
 
-## Archivos
+## Qué hay en cada archivo
 
-- La [bitácora](bitacora.md) incluye la prueba de escritorio paso a paso y la
-  lectura de los símbolos del diagrama.
-- El [algoritmo en PSeInt](algoritmos/02_cotizacion_recorrido.psc) calcula el
-  total, el anticipo redondeado y el saldo pendiente.
-- El [diagrama de flujo](diagramas/02_cotizacion_recorrido.png) representa la
-  secuencia de entradas, cálculos y resultados. Es una vista previa del diagrama;
-  falta exportar desde PSeInt la imagen oficial del ejercicio.
+- [La bitácora](bitacora.md) cuenta cómo se calcula la cotización e incluye la
+  prueba de escritorio, el resultado esperado y una lectura de los símbolos del
+  diagrama.
+- [El algoritmo en PSeInt](algoritmos/02_cotizacion_recorrido.psc) lee el
+  recorrido, su precio por persona y el tamaño del grupo; luego calcula el
+  total, el anticipo y el saldo.
+- El [diagrama de flujo](algoritmos/diagramas/02_cotizacion_recorrido.png)
+  muestra el orden de las entradas, los cálculos y la cotización final.
 
-## Resultado de comprobación manual
+## El diagrama de flujo
 
-Para cuatro personas en el recorrido Sabores de Barrio, el total es **$240.000**,
-el anticipo es **$72.000** y el saldo pendiente es **$168.000**. La bitácora
-registra el cálculo después de cada instrucción.
+![Diagrama de flujo de la cotización de un recorrido](algoritmos/diagramas/02_cotizacion_recorrido.png)
 
-La ejecución y la exportación oficial del diagrama deben confirmarse en PSeInt.
-El entorno de trabajo no tiene PSeInt instalado, así que la imagen incluida es
-una vista previa y no una exportación de esa aplicación.
+## Qué pedía el reto y cómo va
+
+- [x] El algoritmo calcula el valor total, el anticipo redondeado y el saldo
+  pendiente a partir del total.
+- [x] La prueba de escritorio muestra las variables durante el cálculo para
+  cuatro personas en Sabores de Barrio.
+- [x] La bitácora identifica los símbolos de inicio y fin, entrada y salida, y
+  proceso.
+- [ ] Ejecutar el caso en PSeInt y comprobar que el resultado coincide con la
+  prueba de escritorio.
+- [ ] Exportar desde PSeInt el diagrama oficial y reemplazar la vista previa
+  incluida.
+
+La prueba manual da **$240.000** de total, **$72.000** de anticipo y **$168.000**
+de saldo. PSeInt no está instalado en este entorno, así que la ejecución y la
+exportación oficial quedan pendientes.

@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="780" viewBox="0 0 720 780" role="img" aria-labelledby="title description">
+  <title id="title">Diagrama de flujo de cotización de recorrido</title>
+  <desc id="description">Secuencia que lee recorrido, precio y número de personas, calcula total, anticipo redondeado y saldo, y muestra la cotización.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#334155"/>
+    </marker>
+    <style>
+      .action { fill: #f1f1f1; stroke: #334155; stroke-width: 2; }
+      .io { fill: #ecfdf5; stroke: #047857; stroke-width: 2; }
+      .terminal { fill: #dcfce7; stroke: #166534; stroke-width: 2; }
+      .flow { fill: none; stroke: #334155; stroke-width: 2; marker-end: url(#arrow); }
+      text { fill: #0f172a; font-family: sans-serif; font-size: 17px; text-anchor: middle; }
+      .title { font-size: 22px; font-weight: 700; }
+    </style>
+  </defs>
+
+  <text class="title" x="360" y="35">Cotización de recorrido guiado</text>
+  <ellipse class="terminal" cx="360" cy="78" rx="110" ry="27"/>
+  <text x="360" y="84">Inicio</text>
+
+  <path class="flow" d="M360 105 V130"/>
+  <polygon class="io" points="190,130 530,130 550,190 170,190"/>
+  <text x="360" y="155">Leer nombre del recorrido,</text>
+  <text x="360" y="178">precio por persona y personas</text>
+
+  <path class="flow" d="M360 190 V220"/>
+  <rect class="action" x="180" y="220" width="360" height="68" rx="12"/>
+  <text x="360" y="248">TotalGrupo &lt;-</text>
+  <text x="360" y="273">PrecioPorPersona * CantidadPersonas</text>
+
+  <path class="flow" d="M360 288 V318"/>
+  <rect class="action" x="180" y="318" width="360" height="56" rx="12"/>
+  <text x="360" y="352">PorcentajeAnticipo &lt;- 0.30</text>
+
+  <path class="flow" d="M360 374 V404"/>
+  <rect class="action" x="180" y="404" width="360" height="68" rx="12"/>
+  <text x="360" y="432">Anticipo &lt;- Redon(</text>
+  <text x="360" y="457">TotalGrupo * PorcentajeAnticipo)</text>
+
+  <path class="flow" d="M360 472 V502"/>
+  <rect class="action" x="180" y="502" width="360" height="56" rx="12"/>
+  <text x="360" y="536">SaldoPendiente &lt;- TotalGrupo - Anticipo</text>
+
+  <path class="flow" d="M360 558 V588"/>
+  <polygon class="io" points="190,588 530,588 550,658 170,658"/>
+  <text x="360" y="617">Mostrar recorrido, valor total,</text>
+  <text x="360" y="642">anticipo y saldo pendiente</text>
+
+  <path class="flow" d="M360 658 V690"/>
+  <ellipse class="terminal" cx="360" cy="718" rx="110" ry="27"/>
+  <text x="360" y="724">Fin</text>
+</svg>
