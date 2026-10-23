@@ -87,7 +87,7 @@ El algoritmo completo está en
 calcula los valores en el orden de la descomposición y muestra un resumen para
 la persona de taquilla.
 
-![Diagrama de flujo de la cuenta del grupo](algoritmos/diagramas/03_cuenta_grupo.png)
+![Diagrama de flujo de la cuenta del grupo](algoritmos/diagramas/03_cuenta_grupo.svg)
 
 La imagen es una vista previa del flujo secuencial. Queda pendiente generar y
 exportar el diagrama oficial desde PSeInt, que no está instalado en este

@@ -17,7 +17,6 @@ mini-reto-4-asistente-de-taquilla-v0.1/
     ├── 03_cuenta_grupo.psc
     └── diagramas/
         ├── 03_cuenta_grupo.svg
-        └── 03_cuenta_grupo.png
 ```
 
 Los dos primeros algoritmos se desarrollaron en los retos anteriores:
@@ -38,7 +37,7 @@ archivos `.psc`. Para ver el flujo del tercer algoritmo, abre
 
 ## Diagrama de flujo
 
-![Diagrama de flujo de la cuenta del grupo](algoritmos/diagramas/03_cuenta_grupo.png)
+![Diagrama de flujo de la cuenta del grupo](algoritmos/diagramas/03_cuenta_grupo.svg)
 
 La imagen incluida es una vista previa del flujo. Falta exportar desde PSeInt el
 diagrama oficial, porque PSeInt no está instalado en este entorno.
