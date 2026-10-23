@@ -171,8 +171,3 @@ veces: es la misma estructura aplicada a bicicletas, cascos y candados.
 inicio, fin, decisiones y ciclos acotados, que siempre dan lo mismo ante los mismos
 datos, sin importar quién esté atendiendo.
 
----
-
-## 7. Commits
-
-- `feat: add MiniReto 1 - algoritmo de alquiler de bicicleta (v1 y v2) y bitácora`
