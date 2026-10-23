@@ -1,10 +1,10 @@
-# Algoritmo de alquiler de bicicleta — Versión 1 (sin corregir)
+# Algoritmo de alquiler de bicicleta — Versión 1
 
-> Primera redacción, escrita de memoria después de observar una atención real en
-> Rueda Libre. Es la versión que se intercambió con el compañero para probarla
-> literalmente. Contiene ambigüedades a propósito: era el punto de partida.
+Esta fue mi primera redacción. La escribí de memoria, después de mirar cómo se
+atiende en Rueda Libre, y es la que le pasé a un compañero para que la probara
+literalmente. Tiene ambigüedades, pero eso era esperado: era el punto de partida.
 
-## Proceso
+## Los pasos
 
 1. El cliente llega al local y pide alquilar una bicicleta.
 2. Se le pide el documento de identidad.
@@ -19,10 +19,12 @@
 
 ![Diagrama de flujo del algoritmo v1](diagramas/alquiler-bicicleta-v1.svg)
 
-> Es una secuencia lineal sin bifurcaciones: no hay ninguna decisión que pueda llevar a otro camino, y no se distingue un inicio ni un final.
+En el diagrama se ve el problema de un vistazo: es una línea recta, sin ninguna
+bifurcación. No hay ninguna decisión que pueda llevar a otro camino, y tampoco se
+distingue dónde empieza ni dónde termina.
 
-## Lo que esta versión no resuelve
+## Lo que esta versión no arregla
 
-- No tiene un **inicio** ni un **fin** explícitos: no se sabe cuándo empieza ni cuándo termina el proceso.
-- No tiene **ninguna decisión**: no dice qué hacer si no hay bicicletas, si el cliente no tiene documento o si la bicicleta está rota.
-- Varias acciones dependen del sentido común de quien atiende ("lo lógico sería..."), que es justo lo que la dueña quiere evitar.
+- No tiene inicio ni fin escritos: no se sabe cuándo arranca el proceso ni cuándo termina.
+- No tiene ni una decisión: no dice qué hacer si no quedan bicicletas, si el cliente no tiene documento o si la bicicleta está rota.
+- Varios pasos dependen del sentido común de quien atienda, que es justo lo que la dueña quiere evitar.
