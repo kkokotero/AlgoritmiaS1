@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="1210" viewBox="0 0 720 1210" role="img" aria-labelledby="title description">
+  <title id="title">Diagrama de flujo de la cuenta del grupo</title>
+  <desc id="description">Diagrama secuencial para leer los datos del alquiler y del recorrido, calcular subtotal, aporte del diez por ciento, total y valor por persona redondeado hacia arriba a la centena.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#334155"/>
+    </marker>
+    <style>
+      .action { fill: #f1f1f1; stroke: #334155; stroke-width: 2; }
+      .io { fill: #ecfdf5; stroke: #047857; stroke-width: 2; }
+      .terminal { fill: #dcfce7; stroke: #166534; stroke-width: 2; }
+      .flow { fill: none; stroke: #334155; stroke-width: 2; marker-end: url(#arrow); }
+      text { fill: #0f172a; font-family: sans-serif; font-size: 17px; text-anchor: middle; }
+      .title { font-size: 22px; font-weight: 700; }
+    </style>
+  </defs>
+
+  <text class="title" x="360" y="35">Cuenta del grupo — Asistente v0.1</text>
+  <ellipse class="terminal" cx="360" cy="78" rx="110" ry="27"/>
+  <text x="360" y="84">Inicio</text>
+
+  <path class="flow" d="M360 105 V130"/>
+  <rect class="action" x="180" y="130" width="360" height="58" rx="12"/>
+  <text x="360" y="155">PrecioPorHoraBicicleta &lt;- 10.000</text>
+  <text x="360" y="178">PorcentajeAporte &lt;- 0.10</text>
+
+  <path class="flow" d="M360 188 V215"/>
+  <polygon class="io" points="190,215 530,215 550,285 170,285"/>
+  <text x="360" y="242">Leer bicicletas, horas, precio</text>
+  <text x="360" y="267">del recorrido y personas</text>
+
+  <path class="flow" d="M360 285 V310"/>
+  <rect class="action" x="180" y="310" width="360" height="68" rx="12"/>
+  <text x="360" y="338">ValorAlquiler &lt;-</text>
+  <text x="360" y="363">bicicletas * horas * precio por hora</text>
+
+  <path class="flow" d="M360 378 V403"/>
+  <rect class="action" x="180" y="403" width="360" height="68" rx="12"/>
+  <text x="360" y="431">ValorRecorrido &lt;-</text>
+  <text x="360" y="456">precio por persona * personas</text>
+
+  <path class="flow" d="M360 471 V496"/>
+  <rect class="action" x="180" y="496" width="360" height="56" rx="12"/>
+  <text x="360" y="530">Subtotal &lt;- ValorAlquiler + ValorRecorrido</text>
+
+  <path class="flow" d="M360 552 V577"/>
+  <rect class="action" x="180" y="577" width="360" height="56" rx="12"/>
+  <text x="360" y="611">AporteVoluntario &lt;- Subtotal * 10 %</text>
+
+  <path class="flow" d="M360 633 V658"/>
+  <rect class="action" x="180" y="658" width="360" height="56" rx="12"/>
+  <text x="360" y="692">TotalGrupo &lt;- Subtotal + AporteVoluntario</text>
+
+  <path class="flow" d="M360 714 V739"/>
+  <rect class="action" x="180" y="739" width="360" height="68" rx="12"/>
+  <text x="360" y="767">ValorExactoPorPersona &lt;-</text>
+  <text x="360" y="792">TotalGrupo / CantidadPersonas</text>
+
+  <path class="flow" d="M360 807 V832"/>
+  <rect class="action" x="180" y="832" width="360" height="82" rx="12"/>
+  <text x="360" y="860">Redondear con Trunc hacia arriba</text>
+  <text x="360" y="887">a la centena siguiente cuando haga falta</text>
+
+  <path class="flow" d="M360 914 V939"/>
+  <polygon class="io" points="190,939 530,939 550,1034 170,1034"/>
+  <text x="360" y="971">Mostrar alquiler, recorrido, subtotal,</text>
+  <text x="360" y="997">aporte, total y valor por persona</text>
+
+  <path class="flow" d="M360 1034 V1070"/>
+  <ellipse class="terminal" cx="360" cy="1098" rx="110" ry="27"/>
+  <text x="360" y="1104">Fin</text>
+</svg>
