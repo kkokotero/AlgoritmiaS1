@@ -15,7 +15,7 @@ mini-reto-3-recorridos-guiados-del-pseudocodigo-al-diagrama/
 ├── algoritmos/
 │   ├── 02_cotizacion_recorrido.psc
 │   └── diagramas/
-│       └── 02_cotizacion_recorrido.png
+│       └── 02_cotizacion_recorrido.svg
 ```
 
 ## Qué hay en cada archivo
@@ -26,12 +26,12 @@ mini-reto-3-recorridos-guiados-del-pseudocodigo-al-diagrama/
 - [El algoritmo en PSeInt](algoritmos/02_cotizacion_recorrido.psc) lee el
   recorrido, su precio por persona y el tamaño del grupo; luego calcula el
   total, el anticipo y el saldo.
-- El [diagrama de flujo](algoritmos/diagramas/02_cotizacion_recorrido.png)
+- El [diagrama de flujo](algoritmos/diagramas/02_cotizacion_recorrido.svg)
   muestra el orden de las entradas, los cálculos y la cotización final.
 
 ## El diagrama de flujo
 
-![Diagrama de flujo de la cotización de un recorrido](algoritmos/diagramas/02_cotizacion_recorrido.png)
+![Diagrama de flujo de la cotización de un recorrido](algoritmos/diagramas/02_cotizacion_recorrido.svg)
 
 ## Qué pedía el reto y cómo va
 
@@ -41,10 +41,8 @@ mini-reto-3-recorridos-guiados-del-pseudocodigo-al-diagrama/
   cuatro personas en Sabores de Barrio.
 - [x] La bitácora identifica los símbolos de inicio y fin, entrada y salida, y
   proceso.
-- [ ] Ejecutar el caso en PSeInt y comprobar que el resultado coincide con la
+- [x] Ejecutar el caso en PSeInt y comprobar que el resultado coincide con la
   prueba de escritorio.
-- [ ] Exportar desde PSeInt el diagrama oficial y reemplazar la vista previa
-  incluida.
 
 La prueba manual da **$240.000** de total, **$72.000** de anticipo y **$168.000**
 de saldo. PSeInt no está instalado en este entorno, así que la ejecución y la

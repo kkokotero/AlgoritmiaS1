@@ -30,7 +30,7 @@ En [02_cotizacion_recorrido.psc](algoritmos/02_cotizacion_recorrido.psc) está e
 algoritmo secuencial en PSeInt. Las variables tienen nombres que explican qué
 representan, y cada cálculo usa el resultado del paso anterior.
 
-![Diagrama de flujo de la cotización de un recorrido](algoritmos/diagramas/02_cotizacion_recorrido.png)
+![Diagrama de flujo de la cotización de un recorrido](algoritmos/diagramas/02_cotizacion_recorrido.svg)
 
 El diagrama recorre el mismo orden que el pseudocódigo: leer los datos, calcular
 el total, calcular y redondear el anticipo, obtener el saldo y mostrar la
@@ -83,7 +83,7 @@ aplicación no está instalada en este entorno.
 
 ## 5. Los símbolos del diagrama
 
-Al revisar el [diagrama de flujo](algoritmos/diagramas/02_cotizacion_recorrido.png), identifico:
+Al revisar el [diagrama de flujo](algoritmos/diagramas/02_cotizacion_recorrido.svg), identifico:
 
 - **Inicio y fin:** óvalos que indican dónde empieza y termina el algoritmo.
 - **Entrada y salida:** paralelogramos para leer el nombre del recorrido, el
