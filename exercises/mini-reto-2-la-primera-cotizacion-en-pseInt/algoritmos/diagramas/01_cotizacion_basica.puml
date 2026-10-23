@@ -1,0 +1,15 @@
+@startuml
+title Primera cotización de alquiler
+
+start
+:Definir nombre, horas,\nprecio por hora y total;
+:Guardar el precio por hora:\n10.000 pesos;
+:Preguntar el nombre\ndel cliente;
+:Leer el nombre;
+:Preguntar cuántas horas\nalquilará la bicicleta;
+:Leer las horas;
+:Calcular el total:\nhoras × precio por hora;
+:Saludar al cliente e informar\nlas horas y el total a pagar;
+stop
+
+@enduml
